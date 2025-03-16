@@ -53,6 +53,30 @@ public class GetPriceProductCommandMother {
         );
     }
 
+    public static GetPriceProductCommand ControllerRequest3Command() {
+        return createCommand(
+                35455,
+                1,
+                LocalDateTime.of(2020, 6, 14, 21, 0)
+        );
+    }
+
+    public static GetPriceProductCommand ControllerRequest4Command() {
+        return createCommand(
+                35455,
+                1,
+                LocalDateTime.of(2020, 6, 15, 10, 0)
+        );
+    }
+
+    public static GetPriceProductCommand ControllerRequest5Command() {
+        return createCommand(
+                35455,
+                1,
+                LocalDateTime.of(2020, 6, 16, 21, 0)
+        );
+    }
+
     public static GetPriceProductCommand anotherProductCommand() {
         return createCommand(
                 35455,
@@ -62,6 +86,14 @@ public class GetPriceProductCommandMother {
     }
 
     public static GetPriceProductCommand notFoundCommand() {
+        return createCommand(
+                99999,
+                1,
+                LocalDateTime.of(2020, 6, 14, 10, 0)
+        );
+    }
+
+    public static GetPriceProductCommand ControllerRequest1params() {
         return createCommand(
                 99999,
                 1,
