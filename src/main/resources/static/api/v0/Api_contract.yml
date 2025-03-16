@@ -1,0 +1,78 @@
+openapi: 3.0.0
+info:
+  title: API de Precios de los Productos
+  description: API que devuelve el precio de un producto.
+  version: 1.0.0
+servers:
+  - url: https://api.pruebatecnica.com/v1
+    description: Servidor de producción
+paths:
+  /products:
+    get:
+      summary: Obtener datos del precio de un producto de una marca.
+      description: Devuelve el precio del producto correspondiente a la fecha , id de producto, id marca .
+      parameters:
+        - name: date
+          in: query
+          required: true
+          description: Fecha en formato YYYY-MM-DD
+          schema:
+            type: string
+            format: date
+        - name: productId
+          in: query
+          required: true
+          description: Identificador del producto
+          schema:
+            type: integer
+        - name: brandId
+          in: query
+          required: true
+          description: Identificador de la marca
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Datos obtenidos exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        "400":
+          description: Parámetros inválidos o no existentes
+        "404":
+          description: No se encontró el precio del producto con ID
+        "500":
+          description: Ocurrió un error inesperado
+
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        product_id:
+          type: integer
+          format: int64
+          example: 35455
+        brand_id:
+          type: integer
+          format: int32
+          example: 1
+        price_list:
+          type: integer
+          example: 1
+        start_date:
+          type: string
+          format: date-time
+          example: 2020-06-14T00:00:00Z
+        end_date:
+          type: string
+          format: date-time
+          example: 2020-12-31T23:59:59Z
+        price:
+          type: string
+          format: "^[0-9]+(\\.[0-9]{1,2})?$"
+          example: "38.95"
+        curr:
+          type: string
+          example: "EUR"
