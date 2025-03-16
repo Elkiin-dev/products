@@ -93,12 +93,4 @@ public class GetPriceProductCommandMother {
         );
     }
 
-    public static GetPriceProductCommand ControllerRequest1params() {
-        return createCommand(
-                99999,
-                1,
-                LocalDateTime.of(2020, 6, 14, 10, 0)
-        );
-    }
-
 }

@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class GetPriceProductControllerIntegrationTest {
+class GetPriceProductControllerIntegrationTest {
     @Autowired
     private MockMvc mockMvc;
 
@@ -24,11 +24,11 @@ public class GetPriceProductControllerIntegrationTest {
     private H2PriceProductRepository repository;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
     }
 
     @Test
-    public void testGetPriceProductRequest1() throws Exception {
+    void testGetPriceProductRequest1() throws Exception {
         GetPriceProductCommand command = GetPriceProductCommandMother.defaultCommand();
         mockMvc.perform(get("/products/prices")
                         .param("productId", String.valueOf(command.getProductId()))
@@ -41,7 +41,7 @@ public class GetPriceProductControllerIntegrationTest {
     }
 
     @Test
-    public void testGetPriceProductRequest2() throws Exception {
+    void testGetPriceProductRequest2() throws Exception {
         GetPriceProductCommand command = GetPriceProductCommandMother.highPriorityCommand();
 
         mockMvc.perform(get("/products/prices")
@@ -55,7 +55,7 @@ public class GetPriceProductControllerIntegrationTest {
     }
 
     @Test
-    public void testGetPriceProductRequest3() throws Exception {
+    void testGetPriceProductRequest3() throws Exception {
         GetPriceProductCommand command = GetPriceProductCommandMother.ControllerRequest3Command();
 
         mockMvc.perform(get("/products/prices")
@@ -69,7 +69,7 @@ public class GetPriceProductControllerIntegrationTest {
     }
 
     @Test
-    public void testGetPriceProductRequest4() throws Exception {
+    void testGetPriceProductRequest4() throws Exception {
         GetPriceProductCommand command = GetPriceProductCommandMother.ControllerRequest4Command();
 
         mockMvc.perform(get("/products/prices")
@@ -83,7 +83,7 @@ public class GetPriceProductControllerIntegrationTest {
     }
 
     @Test
-    public void testGetPriceProductRequest5() throws Exception {
+    void testGetPriceProductRequest5() throws Exception {
         GetPriceProductCommand command = GetPriceProductCommandMother.ControllerRequest5Command();
 
         mockMvc.perform(get("/products/prices")
@@ -97,7 +97,7 @@ public class GetPriceProductControllerIntegrationTest {
     }
 
     @Test
-    public void testPriceNotFound() throws Exception {
+    void testPriceNotFound() throws Exception {
         GetPriceProductCommand command = GetPriceProductCommandMother.notFoundCommand();
 
         mockMvc.perform(get("/products/prices")
