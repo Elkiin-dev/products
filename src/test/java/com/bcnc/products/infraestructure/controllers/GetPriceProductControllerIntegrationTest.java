@@ -3,7 +3,6 @@ package com.bcnc.products.infraestructure.controllers;
 import com.bcnc.products.application.models.GetPriceProductCommandMother;
 import com.bcnc.products.product.application.models.GetPriceProductCommand;
 import com.bcnc.products.product.infraestructure.repositories.H2PriceProductRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -22,10 +21,6 @@ class GetPriceProductControllerIntegrationTest {
 
     @Autowired
     private H2PriceProductRepository repository;
-
-    @BeforeEach
-    void setup() {
-    }
 
     @Test
     void testGetPriceProductRequest1() throws Exception {

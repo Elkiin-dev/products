@@ -1,9 +1,9 @@
 package com.bcnc.products.application.services;
 
 import com.bcnc.products.application.models.GetPriceProductCommandMother;
+import com.bcnc.products.product.application.dto.PriceProductDTO;
 import com.bcnc.products.product.application.models.GetPriceProductCommand;
-import com.bcnc.products.product.application.services.GetPriceProductUseCase;
-import com.bcnc.products.product.domain.models.PriceProduct;
+import com.bcnc.products.product.application.services.impl.GetPriceProductUseCaseImpl;
 import com.bcnc.products.product.domain.repositories.PriceProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ class GetPriceProductUseCaseTest {
     private PriceProductRepository priceRepository;
 
     @InjectMocks
-    private GetPriceProductUseCase priceService;
+    private GetPriceProductUseCaseImpl priceService;
 
     @BeforeEach
     void setUp() {
@@ -38,7 +38,7 @@ class GetPriceProductUseCaseTest {
         when(priceRepository.findBy( command.getProductId(), command.getBrandId(), command.getDate()))
                 .thenReturn(GetPriceProductCommandMother.defaultPrice());
 
-        PriceProduct result = priceService.execute(command);
+        PriceProductDTO result = priceService.execute(command);
 
         assertNotNull(result);
         assertEquals(new BigDecimal("35.50"), result.getPrice());
@@ -51,7 +51,7 @@ class GetPriceProductUseCaseTest {
         when(priceRepository.findBy(command.getProductId(), command.getBrandId(), command.getDate()))
                 .thenReturn(GetPriceProductCommandMother.highPriorityPrice());
 
-        PriceProduct result = priceService.execute(command);
+        PriceProductDTO result = priceService.execute(command);
 
         assertNotNull(result);
         assertEquals(new BigDecimal("25.45"), result.getPrice());
@@ -64,7 +64,7 @@ class GetPriceProductUseCaseTest {
         when(priceRepository.findBy(command.getProductId(), command.getBrandId(), command.getDate()))
                 .thenReturn(GetPriceProductCommandMother.anotherProductPrice());
 
-        PriceProduct result = priceService.execute(command);
+        PriceProductDTO result = priceService.execute(command);
 
         assertNotNull(result);
         assertEquals(new BigDecimal("50.00"), result.getPrice());
@@ -77,7 +77,7 @@ class GetPriceProductUseCaseTest {
         when(priceRepository.findBy(command.getProductId(), command.getBrandId(), command.getDate()))
                 .thenReturn(null);
 
-        PriceProduct result = priceService.execute(command);
+        PriceProductDTO result = priceService.execute(command);
 
         assertNull(result);
     }
