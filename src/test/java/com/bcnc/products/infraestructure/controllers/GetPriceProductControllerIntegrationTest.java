@@ -25,7 +25,7 @@ class GetPriceProductControllerIntegrationTest {
     @Test
     void testGetPriceProductRequest1() throws Exception {
         GetPriceProductCommand command = GetPriceProductCommandMother.defaultCommand();
-        mockMvc.perform(get("/products/prices")
+        mockMvc.perform(get("/product/price")
                         .param("productId", String.valueOf(command.getProductId()))
                         .param("brandId", String.valueOf(command.getBrandId()))
                         .param("date", String.valueOf(command.getDate())))
@@ -39,7 +39,7 @@ class GetPriceProductControllerIntegrationTest {
     void testGetPriceProductRequest2() throws Exception {
         GetPriceProductCommand command = GetPriceProductCommandMother.highPriorityCommand();
 
-        mockMvc.perform(get("/products/prices")
+        mockMvc.perform(get("/product/price")
                         .param("productId", String.valueOf(command.getProductId()))
                         .param("brandId", String.valueOf(command.getBrandId()))
                         .param("date", String.valueOf(command.getDate())))
@@ -53,7 +53,7 @@ class GetPriceProductControllerIntegrationTest {
     void testGetPriceProductRequest3() throws Exception {
         GetPriceProductCommand command = GetPriceProductCommandMother.ControllerRequest3Command();
 
-        mockMvc.perform(get("/products/prices")
+        mockMvc.perform(get("/product/price")
                         .param("productId", String.valueOf(command.getProductId()))
                         .param("brandId", String.valueOf(command.getBrandId()))
                         .param("date", String.valueOf(command.getDate())))
@@ -67,7 +67,7 @@ class GetPriceProductControllerIntegrationTest {
     void testGetPriceProductRequest4() throws Exception {
         GetPriceProductCommand command = GetPriceProductCommandMother.ControllerRequest4Command();
 
-        mockMvc.perform(get("/products/prices")
+        mockMvc.perform(get("/product/price")
                         .param("productId", String.valueOf(command.getProductId()))
                         .param("brandId", String.valueOf(command.getBrandId()))
                         .param("date", String.valueOf(command.getDate())))
@@ -81,7 +81,7 @@ class GetPriceProductControllerIntegrationTest {
     void testGetPriceProductRequest5() throws Exception {
         GetPriceProductCommand command = GetPriceProductCommandMother.ControllerRequest5Command();
 
-        mockMvc.perform(get("/products/prices")
+        mockMvc.perform(get("/product/price")
                         .param("productId", String.valueOf(command.getProductId()))
                         .param("brandId", String.valueOf(command.getBrandId()))
                         .param("date", String.valueOf(command.getDate())))
@@ -95,7 +95,7 @@ class GetPriceProductControllerIntegrationTest {
     void testPriceNotFound() throws Exception {
         GetPriceProductCommand command = GetPriceProductCommandMother.notFoundCommand();
 
-        mockMvc.perform(get("/products/prices")
+        mockMvc.perform(get("/product/price")
                         .param("productId", String.valueOf(command.getProductId()))
                         .param("brandId", String.valueOf(command.getBrandId()))
                         .param("date", String.valueOf(command.getDate())))

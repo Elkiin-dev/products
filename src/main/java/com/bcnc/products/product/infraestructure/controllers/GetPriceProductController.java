@@ -3,7 +3,9 @@ package com.bcnc.products.product.infraestructure.controllers;
 import com.bcnc.products.product.application.dto.PriceProductDTO;
 import com.bcnc.products.product.application.models.GetPriceProductCommand;
 import com.bcnc.products.product.application.services.GetPriceProductUseCase;
+import com.bcnc.products.product.domain.models.PriceProduct;
 import com.bcnc.products.product.infraestructure.exceptions.PriceProductNotFoundException;
+import com.bcnc.products.product.infraestructure.mappers.PriceProductMapper;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,8 +23,9 @@ public class GetPriceProductController {
 
     private static final Logger logger = LoggerFactory.getLogger(GetPriceProductController.class);
     private final GetPriceProductUseCase service;
+    private final PriceProductMapper mapper;
 
-    @GetMapping("/products/prices")
+    @GetMapping("/product/price")
     public ResponseEntity<Object> handle(
             @RequestParam(name = "productId", required = true) final Integer productId,
             @RequestParam(name = "brandId", required = true) final Integer brandId,
@@ -30,7 +33,7 @@ public class GetPriceProductController {
         logger.info("Solicitud recibida -> productId: {}, brandId: {}, date: {}", productId, brandId, date);
 
         GetPriceProductCommand command = new GetPriceProductCommand(productId, brandId, date);
-        PriceProductDTO priceProduct = Optional.ofNullable(service.execute(command)).
+        PriceProduct priceProduct = Optional.ofNullable(service.execute(command)).
                 orElseThrow(() -> {
                     logger.warn("Precio no encontrado para -> productId: {}, brandId: {}, date: {}",
                             productId, brandId, date);
@@ -38,6 +41,8 @@ public class GetPriceProductController {
                 });
 
         logger.info("Precio encontrado -> {}", priceProduct);
-        return ResponseEntity.ok(priceProduct);
+        PriceProductDTO response = mapper.map(priceProduct);
+
+        return ResponseEntity.ok(response);
     }
 }

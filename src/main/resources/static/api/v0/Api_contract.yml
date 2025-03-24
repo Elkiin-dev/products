@@ -7,7 +7,7 @@ servers:
   - url: https://api.pruebatecnica.com/v1
     description: Servidor de producción
 paths:
-  /products/prices:
+  /product/price:
     get:
       summary: Obtener datos del precio de un producto de una marca.
       description: Devuelve el precio del producto correspondiente a la fecha , id de producto, id marca .

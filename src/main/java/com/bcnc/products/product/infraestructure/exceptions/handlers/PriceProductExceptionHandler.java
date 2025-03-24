@@ -3,6 +3,7 @@ package com.bcnc.products.product.infraestructure.exceptions.handlers;
 import com.bcnc.products.product.infraestructure.exceptions.PriceProductNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -35,8 +36,13 @@ public class PriceProductExceptionHandler {
     }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
-    public ResponseEntity<Object> handleMethodNotSupported(MissingServletRequestParameterException ex) {
-        return buildResponse(HttpStatus.METHOD_NOT_ALLOWED, REQUIRE_PARAMS_MESSAGE + ex.getParameterName());
+    public ResponseEntity<Object> handleRequestParameter(MissingServletRequestParameterException ex) {
+        return buildResponse(HttpStatus.BAD_REQUEST, REQUIRE_PARAMS_MESSAGE + ex.getParameterName());
+    }
+
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public ResponseEntity<Object> handleMethodNotSupported(HttpRequestMethodNotSupportedException ex) {
+        return buildResponse(HttpStatus.METHOD_NOT_ALLOWED, REQUIRE_PARAMS_MESSAGE + ex.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
